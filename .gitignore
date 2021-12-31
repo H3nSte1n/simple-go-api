@@ -1,0 +1,15 @@
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+tmp/*
+.docker_data/*
+
+*.test
+
+vendor/
+
+go.work
+
+.env

@@ -1,0 +1,30 @@
+version: "3"
+
+services:
+  mongodb:
+    image: mongo
+    container_name: mongodb
+    volumes:
+      - ./.docker_data/mongodb:/data/db
+    ports:
+      - 27017:27017
+    restart: always
+    # networks:
+    #   - mongo
+
+  app:
+    build: ./
+    container_name: app
+    environment:
+      - MONGODB_USERNAME=${MONGODB_USERNAME}
+      - MONGODB_PASSWORD=${MONGODB_PASSWORD}
+    volumes:
+      - .:/opt/app/api
+    depends_on:
+      - mongodb
+    ports:
+      - 5002:5002
+      
+# networks:
+#   mongo:
+#     driver: bridge
